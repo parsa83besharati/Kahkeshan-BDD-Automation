@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class ConfigReader {
 
-    private static final String CONFIG_FILE_PATH = "src/main/resources/config.properties";
+    private static final String CONFIG_FILE_PATH = "Kahkeshan-BDD-Automation/src/main/resources/config.properties";
 
     // Load properties from the config file
     public static Properties loadProperties() {

@@ -1,5 +1,7 @@
 package auth;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.path.json.JsonPath;
@@ -8,6 +10,9 @@ import utils.ConfigReader;
 import static io.restassured.RestAssured.*;
 
 public class LoginAutomation {
+
+    // Create a logger instance using SLF4J
+    private static final Logger logger = LoggerFactory.getLogger(LoginAutomation.class);
 
     public static void main(String[] args) {
         // Load username and password from the config file
@@ -18,6 +23,8 @@ public class LoginAutomation {
         RestAssured.baseURI = "https://ramandoauth.ramandtech.com/OAuthAPI/v1";
 
         // Step 1: Send the first POST request (LoginFirstStep) with mobileNumber as username
+        logger.info("Starting the login process for username: " + username);
+
         Response firstResponse = given()
                 .contentType("application/json")
                 .body("{ \"mobileNumber\": \"" + username + "\" }")
@@ -29,7 +36,7 @@ public class LoginAutomation {
                 .response();
 
         // Print the first response body for debugging
-        System.out.println("First Response Body:");
+        logger.debug("First Response Body: ");
         firstResponse.prettyPrint();
 
         // Extract nextStepToken from the first response
@@ -37,7 +44,7 @@ public class LoginAutomation {
         String nextStepToken = firstResponseJson.getString("result.nextStepToken");
 
         if (nextStepToken != null) {
-            System.out.println("nextStepToken: " + nextStepToken);
+            logger.info("Extracted nextStepToken: " + nextStepToken);
 
             // Step 2: Send the second POST request (PasswordLogin) with nextStepToken and password
             Response secondResponse = given()
@@ -51,7 +58,7 @@ public class LoginAutomation {
                     .response();
 
             // Print the second response body for debugging
-            System.out.println("Second Response Body:");
+            logger.debug("Second Response Body: ");
             secondResponse.prettyPrint();
 
             // Extract token from the second response
@@ -59,16 +66,14 @@ public class LoginAutomation {
             String token = secondResponseJson.getString("result.token");
 
             if (token != null) {
-                System.out.println("Logged in successfully! Token: " + token);
-
-                // Save token to config file
+                logger.info("Logged in successfully! Token: " + token);
+                // Optionally, store the token in config.properties for use later
                 ConfigReader.saveToken(token);
-                System.out.println("Token saved to config.properties");
             } else {
-                System.out.println("Token not found in the second response.");
+                logger.error("Token not found in the second response.");
             }
         } else {
-            System.out.println("nextStepToken not found in the first response.");
+            logger.error("nextStepToken not found in the first response.");
         }
     }
 }

@@ -16,13 +16,35 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+        <!-- SLF4J API -->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>2.0.6</version>
-            <scope>runtime</scope>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version> <!-- Replace with your SLF4J version -->
         </dependency>
+
+        <!-- SLF4J to Log4j2 Bridge -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.19.0</version> <!-- Replace with your Log4j version -->
+        </dependency>
+
+        <!-- Log4j2 API for logging -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.19.0</version> <!-- Replace with your Log4j version -->
+        </dependency>
+
+        <!-- Log4j2 Core for logging functionality -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.19.0</version> <!-- Replace with your Log4j version -->
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -120,4 +142,11 @@
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
 </project>
