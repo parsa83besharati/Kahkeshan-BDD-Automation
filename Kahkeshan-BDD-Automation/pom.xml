@@ -8,7 +8,7 @@
         <aspectj.version>1.9.2</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
+        <allure.results.directory>${project.basedir}/target/cucumber</allure.results.directory>
     </properties>
 
     <dependencies>

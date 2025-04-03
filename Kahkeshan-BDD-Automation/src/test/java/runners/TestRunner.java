@@ -12,7 +12,7 @@ import java.io.IOException;
 @CucumberOptions(
         features = "features",
         glue = {"stepDefinitions"},
-        plugin = {"pretty", "json:target/cucumber/report.json", "html:target/cucumber/report.html"}
+        plugin = {"pretty", "json:allure-results/report.json", "html:allure-results/report.html"}
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
