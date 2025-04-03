@@ -7,6 +7,8 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
+import java.io.IOException;
+
 @CucumberOptions(
         features = "features",
         glue = {"stepDefinitions"},

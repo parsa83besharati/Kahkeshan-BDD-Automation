@@ -7,6 +7,8 @@
     <properties>
         <aspectj.version>1.9.2</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
     </properties>
 
     <dependencies>
@@ -43,7 +45,6 @@
             <artifactId>log4j-core</artifactId>
             <version>2.19.0</version> <!-- Replace with your Log4j version -->
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
@@ -131,7 +132,7 @@
             <version>2.25.0</version>
         </dependency>
 
-        <!-- Allure Report -->
+        <!-- Allure Commandline -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-commandline</artifactId>
@@ -174,11 +175,11 @@
                 </dependencies>
             </plugin>
 
-            <!-- Allure Report Plugin -->
+            <!-- Allure Plugin for Maven -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.14.0</version> <!-- Check for latest version -->
+                <version>2.14.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -186,13 +187,10 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <allureResultsDirectory>./allure-results</allureResultsDirectory>
-                </configuration>
             </plugin>
-
         </plugins>
     </build>
+
     <repositories>
         <repository>
             <id>central</id>
