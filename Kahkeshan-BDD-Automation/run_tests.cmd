@@ -1,21 +1,9 @@
 @echo off
-setlocal
+echo 🌱 Running tests...
+mvn clean test || echo "⚠️ Tests failed, generating Allure report anyway..."
 
-echo ================================
-echo ✅ Running TestRunner Java Class
-echo ================================
+echo 📊 Generating Allure report...
+allure generate allure-results --clean -o allure-report
 
-:: Step 1: Clean and compile the project
-mvn clean compile
-
-:: Step 2: Run tests (assumes TestNG or Cucumber runner configured in Maven)
-mvn test
-
-:: Step 3: Generate and open Allure report
-echo ================================
-echo 📊 Generating Allure Report
-echo ================================
-allure serve target/allure-results
-
-endlocal
-pause
+echo 🚀 Opening Allure report...
+allure open allure-report

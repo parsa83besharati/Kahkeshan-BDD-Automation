@@ -7,13 +7,15 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
-import java.io.IOException;
-
 @CucumberOptions(
         features = "features",
         glue = {"stepDefinitions"},
-        plugin = {"pretty", "json:allure-results/report.json", "html:allure-results/report.html"}
+        plugin = {
+                "pretty",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" // removes hardcoded json/html plugins
+        }
 )
+
 public class TestRunner extends AbstractTestNGCucumberTests {
 
         @BeforeTest
