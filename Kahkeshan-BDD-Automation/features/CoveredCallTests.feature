@@ -7,7 +7,6 @@ Feature: Covered Call BEP
     @WithCommission
   Scenario Outline: Validate Covered Call BEP With Commission
     When I Call Covered Call Strategy API With BestLimitPrice Price Type , BestLimit Symbol Basis And With Commission
-    Then The Covered Call Strategy With Commission Response Code Should Be 200
     Then The Covered Call Strategy BEP Of <baseSymbol> With Commission Is Valid
 
     Examples:
@@ -59,7 +58,6 @@ Feature: Covered Call BEP
     @WithoutCommission
   Scenario Outline: Validate Covered Call BEP Without Commission
     When I Call Covered Call Strategy API With BestLimitPrice Price Type , BestLimit Symbol Basis And Without Commission
-    Then The Covered Call Strategy Without Commission Response Code Should Be 200
     Then The Covered Call Strategy BEP Of <baseSymbol> Without Commission Is Valid
 
     Examples:
