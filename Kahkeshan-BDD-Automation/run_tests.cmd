@@ -1,9 +1,7 @@
 @echo off
-echo 🌱 Running tests...
-mvn clean test || echo "⚠️ Tests failed, generating Allure report anyway..."
+mvn clean test
 
-echo 📊 Generating Allure report...
 allure generate allure-results --clean -o allure-report
 
-echo 🚀 Opening Allure report...
-allure open allure-report
+allure serve
+pause
