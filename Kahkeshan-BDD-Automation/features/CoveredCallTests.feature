@@ -1,31 +1,107 @@
-Feature: Covered Call Strategy API Tests
+Feature: Covered Call BEP
 
-  Scenario: Validate Covered Call BEP calculation for Bourse with Commission
-    Given I am authenticated
-    When I send a GET request to "https://kahkeshanapi.ramandtech.com/Strategies/v1/CoveredCall?PageSize=100&PageNumber=1&PriceType=BestLimitPrice&SymbolBasis=BestLimit&WithCommission=true"
-    Then I verify the coveredCallBEP calculation for "bourse" with a tolerance of 10
+  Covered Call BEP
 
-  Scenario: Validate Covered Call BEP calculation for Bourse without Commission
-    Given I am authenticated
-    When I send a GET request to "https://kahkeshanapi.ramandtech.com/Strategies/v1/CoveredCall?PageSize=100&PageNumber=1&PriceType=BestLimitPrice&SymbolBasis=BestLimit&WithCommission=false"
-    Then I verify the coveredCallBEP calculation for "bourse" with a tolerance of 10
+  @BEP
+    @CoveredCall
+    @WithCommission
+  Scenario Outline: Validate Covered Call BEP With Commission
+    When I Call Covered Call Strategy API With BestLimitPrice Price Type , BestLimit Symbol Basis And With Commission
+    Then The Covered Call Strategy With Commission Response Code Should Be 200
+    Then The Covered Call Strategy BEP Of <baseSymbol> With Commission Is Valid
 
-  Scenario: Validate Covered Call BEP calculation for Farabourse
-    Given I am authenticated
-    When I send a GET request to "https://kahkeshanapi.ramandtech.com/Strategies/v1/CoveredCall?PageSize=100&PageNumber=1&PriceType=BestLimitPrice&SymbolBasis=BestLimit&WithCommission=true"
-    Then I verify the coveredCallBEP calculation for "farabourse" with a tolerance of 10
+    Examples:
+      | baseSymbol |
+          #   |  ETF       |
+      | رویین      |
+      | توان       |
+      | اهرم       |
+      | خودران     |
+      | جهش        |
+      | شتاب       |
+      | آساس       |
+      | موج        |
+      | اطلس       |
+      | نارنج اهرم |
+      | تیام       |
+      | پادا       |
+      | ثمین       |
+      | پتروآبان   |
+      | بیدار      |
+      | پناه       |
+          #   |  Bourse    |
+      | خساپا  |
+      | خودرو  |
+      | شستا   |
+      | ذوب    |
+      | وبصادق |
+      | وبملت  |
+      | وتجارت |
+      | فملی   |
+      | شپنا   |
+      | خگستر  |
+      | خبهمن  |
+      | وبصادر |
+      | فولاد  |
+          #   |Fara Bourse |
+      | کرمان  |
+      | سامان  |
+      | کوثر   |
+      | خاور   |
+      | خپارس  |
+      | بساما  |
+      | کرومیت |
+      | فزر    |
+      | وتعاون |
 
-  Scenario: Validate Covered Call BEP calculation for Farabourse without Commission
-    Given I am authenticated
-    When I send a GET request to "https://kahkeshanapi.ramandtech.com/Strategies/v1/CoveredCall?PageSize=100&PageNumber=1&PriceType=BestLimitPrice&SymbolBasis=BestLimit&WithCommission=false"
-    Then I verify the coveredCallBEP calculation for "farabourse" with a tolerance of 10
+  @BEP
+    @CoveredCall
+    @WithoutCommission
+  Scenario Outline: Validate Covered Call BEP Without Commission
+    When I Call Covered Call Strategy API With BestLimitPrice Price Type , BestLimit Symbol Basis And Without Commission
+    Then The Covered Call Strategy Without Commission Response Code Should Be 200
+    Then The Covered Call Strategy BEP Of <baseSymbol> Without Commission Is Valid
 
-  Scenario: Validate Covered Call BEP calculation for ETF with Commission
-    Given I am authenticated
-    When I send a GET request to "https://kahkeshanapi.ramandtech.com/Strategies/v1/CoveredCall?PageSize=100&PageNumber=1&PriceType=BestLimitPrice&SymbolBasis=BestLimit&WithCommission=true"
-    Then I verify the coveredCallBEP calculation for "etf" with a tolerance of 10
-
-  Scenario: Validate Covered Call BEP calculation for ETF without Commission
-    Given I am authenticated
-    When I send a GET request to "https://kahkeshanapi.ramandtech.com/Strategies/v1/CoveredCall?PageSize=100&PageNumber=1&PriceType=BestLimitPrice&SymbolBasis=BestLimit&WithCommission=false"
-    Then I verify the coveredCallBEP calculation for "etf" with a tolerance of 10
+    Examples:
+      | baseSymbol |
+          #   |  ETF       |
+      | رویین      |
+      | توان       |
+      | اهرم       |
+      | خودران     |
+      | جهش        |
+      | شتاب       |
+      | آساس       |
+      | موج        |
+      | اطلس       |
+      | نارنج اهرم |
+      | تیام       |
+      | پادا       |
+      | ثمین       |
+      | پتروآبان   |
+      | بیدار      |
+      | پناه       |
+          #   |  Bourse    |
+      | خساپا  |
+      | خودرو  |
+      | شستا   |
+      | ذوب    |
+      | وبصادق |
+      | وبملت  |
+      | وتجارت |
+      | فملی   |
+      | شپنا   |
+      | خگستر  |
+      | خبهمن  |
+      | وبصادر |
+      | فولاد  |
+          #   |Fara Bourse |
+      | کرمان  |
+      | سامان  |
+      | کوثر   |
+      | خاور   |
+      | خپارس  |
+      | بساما  |
+      | کرومیت |
+      | فزر    |
+      | وتعاون |

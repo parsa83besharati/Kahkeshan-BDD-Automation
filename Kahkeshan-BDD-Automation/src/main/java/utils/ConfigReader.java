@@ -35,6 +35,11 @@ public class ConfigReader {
         return loadProperties().getProperty("token");
     }
 
+    // Get the baseurl from the config file
+    public static String getBaseURL() {
+        return loadProperties().getProperty("baseurl");
+    }
+
     // Save the token in the config file
     public static void saveToken(String token) {
         Properties properties = loadProperties();
